@@ -1,0 +1,38 @@
+<section class="show-picture">
+  <p> <%= link_to 'Edit', edit_picture_path(@picture) %> <%= link_to 'Delete', picture_path(@picture), method: :delete, data: {confirm: "Are you sure?" } %> </p>
+  <p> <%= @picture.title %> </p>
+  <p> <%= @picture.description %> </p>
+  <%= image_tag @picture.url %>
+  
+<%= render partial: 'comments/form' %>
+
+
+  <h2> Comments </h2>
+ <p> <%= link_to 'Add Comments', new_picture_comment_path(@picture)%></p>
+
+  <ul>
+  <%@comments.each do |c|%>
+    <li>
+      <p> On <%= c.created_at %> <%=c.name%> said: </p>
+
+      <p><%= c.message%></p>
+    </li>
+  <%end%>
+  </ul>
+
+    <h2> Tags  </h2>
+
+  <ul>
+  <%@tags.each do |t|%>
+    <li>
+    
+      <p><%= t.name%></p>
+    </li>
+  <%end%>
+  </ul>
+
+
+
+
+
+</section>
